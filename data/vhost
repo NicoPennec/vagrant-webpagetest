@@ -1,8 +1,7 @@
 <VirtualHost *:80>
   ServerAdmin webmaster@localhost
-  ServerName webpagetest
-  #ServerName example.com
-  #ServerAlias www.example.com
+  ServerName localhost
+  ServerAlias webpagetest
 
   DocumentRoot /var/www/webpagetest
   <Directory />
