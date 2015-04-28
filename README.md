@@ -1,6 +1,8 @@
 # WebPageTest Private Instance with Vagrant
 
-Easily create your own WebPageTest Private Instance with Vagrant.
+## About
+
+Easily create your own local WebPageTest Private Instance with Vagrant.
 
 WebPagetest is used for measuring and analyzing the performance of web pages.
 
@@ -13,27 +15,26 @@ Install:
 - [Virtual Box](https://www.virtualbox.org/)
 - [Vagrant](https://www.vagrantup.com/)
 
-(Optional)
-- [cmder](http://gooseberrycreative.com/cmder/) (terminal with SSH for Windows)
+Optional for Windows:
 
-## Install the server
+- [cmder](http://gooseberrycreative.com/cmder/) (terminal with SSH)
+
+## Install
 
 Open a terminal in your favorite path.
 
 ### Clone the project from GitHub
 
-> $ mkdir webpagetest
-> $ cd webpagetest  
-> $ git clone https://github.com/NicoPennec/vagrant-webpagetest.git  
-> $ cd vagrant
+```sh
+$ git clone https://github.com/NicoPennec/vagrant-webpagetest.git  
+$ cd vagrant-webpagetest/vagrant/
+```
 
-### Init Box Vagrant
+### Vagrant configuration behind a proxy (optional)
 
-> $ vagrant box add hashicorp/precise32
-
-### Configuration behind a proxy (optional)
-
-> $ vagrant plugin install vagrant-proxyconf
+```sh
+$ vagrant plugin install vagrant-proxyconf
+```
 
 Edit the `Vagrantfile` file:
 
@@ -49,24 +50,28 @@ Edit your `hosts` configuration file:
 - MacOS: `/private/etc/hosts`
 - Windows: `C:\Windows\System32\drivers\etc\`
 
-> 127.0.0.1   webpagetest
+```sh
+127.0.0.1   webpagetest
+```
+
+### Init the VM
+
+```sh
+$ vagrant provision
+```
 
 ### Run the VM
 
-> $ vagrant up
+```sh
+$ vagrant up
+```
 
-#### (Optional)
-
-Open a SSH connection:
-> $ vagrant ssh
-
-Logout the SHH connection
-> vagrant@webpagetest:~$ logout
-
-### Open your WebPageTest Private Instance
+### Play with your local WebPageTest
 
 [http://webpagetest:8080/](http://webpagetest:8080/)
 
 ### Stop the VM
 
-> $ vagrant halt
+```sh
+$ vagrant halt
+```
