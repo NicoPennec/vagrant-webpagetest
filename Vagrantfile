@@ -12,7 +12,6 @@ Vagrant.configure(2) do |config|
 
   # Resolve "stdin: is not a tty" errors
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-  #config.ssh.pty = true
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
@@ -37,7 +36,7 @@ Vagrant.configure(2) do |config|
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  #config.vm.network "public_network"
+  # config.vm.network "public_network"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -114,6 +113,7 @@ Vagrant.configure(2) do |config|
     #sudo apt-get upgrade
 
     # install apache
+    echo -e "Install apache2..."
     sudo apt-get install -y apache2
     # active apache modules
     sudo a2enmod expires
@@ -123,24 +123,35 @@ Vagrant.configure(2) do |config|
     sudo service apache2 restart
 
     # install php & extensions
+    echo -e "Install php..."
     sudo apt-get install -y php5 php5-gd php5-curl php5-sqlite
 
     # install ffmpeg
+    echo -e "Install ffmpeg..."
     #sudo apt-get install -y ffmpeg
     # install "classical" codecs
     #sudo apt-get install -y libavcodec-unstripped-52 libavdevice-unstripped-52
     #sudo apt-get install -y libavcodec54 libavdevice53 libavformat54 libavutil52 libpostproc52 libswscale2 ffmpeg
+    sudo add-apt-repository ppa:mc3man/trusty-media
+    sudo apt-get update
+    sudo apt-get install -y ffmpeg
 
     # install imagemagick
-    #sudo apt-get install -y imagemagick
+    sudo apt-get install -y imagemagick
 
     # install jpegtran
     #sudo apt-get install -y jpegtran
+    sudo apt-get install -y libjpeg-progs
 
     # install exiftool
-    #sudo apt-get install -y exiftool
+    sudo apt-get install -y exiftool
+
+    # install python with modules
+    sudo apt-get install -y python2.7-dev python-pip
+    sudo pip install pillow
 
     # download webpagetest (from github)
+    echo -e "Install webpagetest..."
     cd /vagrant/data
     # git clone (solution #1)
     sudo apt-get install -y git
@@ -153,11 +164,12 @@ Vagrant.configure(2) do |config|
     #sudo rm master.zip
 
     # init apache vhost
+    echo -e "Setting virtual host..."
     sudo mkdir -p /var/www/webpagetest
-    sudo chown -R $USER:$USER /var/www/webpagetest
-    sudo chmod -R 755 /var/www
+    #sudo chmod -R 755 /var/www/
     # copy www content
     sudo cp -r /vagrant/data/webpagetest/www/* /var/www/webpagetest/
+    sudo chown -R www-data:www-data /var/www/webpagetest
     # copy settings
     sudo cp -r -v /vagrant/data/settings/* /var/www/webpagetest/settings/
     # config vhost
