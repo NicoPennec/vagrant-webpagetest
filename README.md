@@ -8,6 +8,12 @@ WebPagetest is used for measuring and analyzing the performance of web pages.
 
 WebPagetest Private Instance : [official documentation](https://sites.google.com/a/webpagetest.org/docs/private-instances)
 
+## Project Status
+
+This project is still in progress
+- WPT Server: __ready__ _(Vagrant VM)_
+- WPT Agent: __in progress__
+
 ## Requirements
 
 Install:
