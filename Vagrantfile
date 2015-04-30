@@ -137,16 +137,20 @@ Vagrant.configure(2) do |config|
     sudo apt-get install -y ffmpeg
 
     # install imagemagick
+    echo -e "Install imagemagick..."
     sudo apt-get install -y imagemagick
 
     # install jpegtran
+    echo -e "Install jpegtran..."
     #sudo apt-get install -y jpegtran
     sudo apt-get install -y libjpeg-progs
 
     # install exiftool
+    echo -e "Install exiftool..."
     sudo apt-get install -y exiftool
 
     # install python with modules
+    echo -e "Install pillow..."
     sudo apt-get install -y python2.7-dev python-pip
     sudo pip install pillow
 
